@@ -1,27 +1,23 @@
 package ru.netology.org.Hibernate_demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.netology.org.Hibernate_demo.dto.Person;
 import ru.netology.org.Hibernate_demo.repository.PersonRepository;
+import ru.netology.org.Hibernate_demo.service.PersonService;
 
 import java.util.List;
-
+import java.util.Optional;
 @RestController
+@RequestMapping("/api/persons")
 public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
+    private PersonService personService;
 
-    @GetMapping("/persons/by-city")
-    public List<Person> getPersonsByCity(@RequestParam String city) {
-        return personRepository.getPersonsByCity(city);
-    }
-
-    @GetMapping("/persons/all")
-    public List<Person> getPersonsAll() {
-        return personRepository.getPersonsAll();
+    @GetMapping("/city/{city}")
+    public List<Person> getPersonsByCity(@PathVariable String city) {
+        return personService.getPersonsByCity(city);
     }
 }

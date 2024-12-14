@@ -3,6 +3,7 @@ package ru.netology.org.Hibernate_demo.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Data
 public class PersonId implements Serializable {
@@ -18,5 +19,18 @@ public class PersonId implements Serializable {
         this.surname = surname;
         this.age = age;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PersonId)) return false;
+        PersonId personId = (PersonId) o;
+        return age == personId.age &&
+                Objects.equals(name, personId.name) &&
+                Objects.equals(surname, personId.surname);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, age);
+    }
 }

@@ -18,9 +18,10 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/persons/by-city").permitAll()
-                        .requestMatchers("/persons/all").authenticated()
-                        .anyRequest().authenticated())
+                        //.requestMatchers("/persons/by-city").permitAll()
+                        //.requestMatchers("/api/persons/city").permitAll()
+                        //.requestMatchers("/persons/all").authenticated()
+                        .anyRequest().permitAll())
                 .formLogin(withDefaults());
         return http.build();
     }

@@ -4,12 +4,11 @@ package ru.netology.org.Hibernate_demo.dto;
 import jakarta.persistence.*;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "PERSONS")
 @IdClass(PersonId.class)
-@Data
 public class Person {
-
     @Id
     private String name;
 
@@ -19,10 +18,8 @@ public class Person {
     @Id
     private int age;
 
-    @Column(name = "phone_number")
     private String phoneNumber;
-
-    @Column(name = "city_of_living")
     private String cityOfLiving;
+
 
 }
